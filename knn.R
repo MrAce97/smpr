@@ -9,16 +9,16 @@ sortObjectsByDist <- function(xl, z, metricFunction =
 {
   l <- dim(xl)[1]
   n <- dim(xl)[2] - 1
-  distances <- matrix(NA, l, 2)
+  weights <- matrix(NA, l, 2)
   for (i in 1:l)
   {
-    distances[i, ] <- c(i, 1/metricFunction(xl[i, 1:n], z))
+    weights[i, ] <- c(i, 1/metricFunction(xl[i, 1:n], z))
   }
   
-  return (distances);
+  return (weights);
 }
 
-kNN <- function(xl, z, k)
+kwNN <- function(xl, z, k)
 {
   weights <- sortObjectsByDist(xl, z)
   orderedXl <- xl[order(weights[, 2],decreasing = TRUE), ]
@@ -42,7 +42,7 @@ plot(iris[, 3:4], pch = 21, bg = colors[iris$Species], col
      = colors[iris$Species], asp = 1)
 z <- c(4, 2)
 xl <- iris[, 3:5]
-class <- kNN(xl, z, k=5)
+class <- kwNN(xl, z, k=5)
 points(z[1], z[2], pch = 23, col = 1, bg = colors[class], asp = 1)
 
 
