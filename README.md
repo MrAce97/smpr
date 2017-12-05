@@ -44,6 +44,7 @@ for (i in 1:k)
 ```R
 return (list[which.max(counts)]) 
 ```
+![kwnn](https://github.com/MrAce97/smpr/blob/master/images/kwnn.png)
 
 # Метод парзеновского окна фиксированной ширины
 
