@@ -49,6 +49,7 @@ return (list[which.max(counts)])
 # Метод парзеновского окна фиксированной ширины
 
 
+
 Постановка задачи: Задана обучающая выборка и множество классов. Требуется найти к какому классу относится классифицируемый объект.
 
 Дано: xl - обучающая выборка, z - классифицируемый объект и параметр h (ширина окна).
@@ -77,7 +78,7 @@ for (i in 1:l)
 ```R
 return (list[which.max(counts)])
 ```
-
+![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFixed.png)
 
 # Метод парзеновского окна переменной ширины
 
@@ -118,7 +119,7 @@ for (i in 1:l)
 ```R
 return (list[which.max(counts)])
 ```
-
+![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFloat.png)
 
 # LOO
 
