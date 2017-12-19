@@ -248,7 +248,7 @@ for (i in 1:l)
 
 | Алгоритм  |      LOO      |
 |----------|:-------------:|
-| naviveBaise |  0.05333333 |
+| naiveBayes |  0.05333333 |
 | parcenWindowFloat |    0.09333333   |  
 | parcenWindowFixed |    0.05333333   |
 | kwnn |    0.04   |
