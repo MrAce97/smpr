@@ -192,7 +192,7 @@ P(x) – априорная вероятность данного значени
 
 Решение:
 ```R
-naviveBayes <- function(xl,z){
+naiveBayes <- function(xl,z){
   l <- dim(xl)[1]
   n <- dim(xl)[2] - 1   
   list <- unique(xl[,n+1])
