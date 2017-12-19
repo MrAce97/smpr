@@ -113,8 +113,11 @@ return (list[which.max(counts)])
 ```
 
 Kernel=3/4*(1-x^2)
+
 ![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFixed.png)
+
 Kernel=2/pi/(exp(x)+exp(-x))
+
 ![pwf](https://github.com/MrAce97/smpr/blob/master/images/parsenWindowFixed1.png)
 
 
@@ -167,12 +170,19 @@ Kernel=2/pi/(exp(x)+exp(-x))
 Дано: xl - обучающая выборка, z - классифицируемый объект и параметр k.
 Наивный байесовский классификатор – это алгоритм классификации, основанный на теореме Байеса с допущением о независимости признаков.
 Теорема Байеса:
+
 ![tb](https://github.com/MrAce97/smpr/blob/master/images/bayes.png)
+
 P(c|x) – апостериорная вероятность данного класса c (т.е. данного значения целевой переменной) при данном значении признака x.
+
 P(c) – априорная вероятность данного класса.
+
 P(x|c) – правдоподобие, т.е. вероятность данного значения признака при данном классе.
+
 P(x) – априорная вероятность данного значения признака.
+
 Для классифицируемого объекта вычисляются функции правдоподобия каждого из классов, по ним вычисляются апостериорные вероятности классов. Объект относится к тому классу, для которого апостериорная вероятность максимальна.
+
 Решение:
 ```R
 naviveBayes <- function(xl,z){
@@ -203,9 +213,6 @@ naviveBayes <- function(xl,z){
   return (list[which.max(counts)])
  
 }
-=======
-![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFloat.png)
->>>>>>> 5b35d20e16f5da6f0d2cb6e0a13a4c8ad14d9fed
 
 ```
 ![naiveBayes](https://github.com/MrAce97/smpr/blob/master/images/naiveBayes.png)
