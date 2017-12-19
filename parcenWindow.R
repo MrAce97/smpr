@@ -1,7 +1,6 @@
-source("lib.r")
 
 kernel <- function(par){
-  ifelse(abs(par)>1, 0, 3/4*(1-par^2))
+  2/pi/(exp(par)+exp(-par))
 }
 parcenWindowFixed <- function(xl,z,h){
   l <- dim(xl)[1]
@@ -39,3 +38,23 @@ parcenWindowFloat <- function(xl,z,k){
   return (list[which.max(counts)]) 
   
 }
+xl <- iris[, 3:5] 
+margin <- 0.3
+xright <- max(xl[, 1]) + margin
+xleft <-max(min(xl[, 1]) - margin,0)
+ytop <- max(xl[, 2]) + margin
+ybot <- max(min(xl[, 2]) - margin,0)
+par(xpd=FALSE,oma=c(0,0,0,10))
+
+plot(main="parsenWindowFloat, k=6", x=1, type="n", xlab=colnames(xl)[1], ylab=colnames(xl)[2],
+     xlim=c(xleft, xright), ylim=c(ybot, ytop), xaxs="i", yaxs="i")
+
+for(i in seq(from=ybot+0.1, to=ytop-0.1, by=0.1)) {
+  for(j in seq(from=xleft+0.1, to=xright-0.1, by=0.1)) {
+    class <- parcenWindowFloat(xl, c(j,i), 6)
+    print(class)
+    if(class!=0) points(j, i, pch =1, col =colors[class]) # cex=6, lwd=4, asp=1
+  }
+}
+
+points(iris[, 3:5], pch =21, bg = colors[iris$Species], col ="black", asp=1)
