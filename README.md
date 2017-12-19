@@ -115,7 +115,7 @@ return (list[which.max(counts)])
 Kernel=3/4*(1-x^2)
 ![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFixed.png)
 Kernel=2/pi/(exp(x)+exp(-x))
-![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFixed1.png)
+![pwf](https://github.com/MrAce97/smpr/blob/master/images/parsenWindowFixed1.png)
 
 
 # Метод парзеновского окна переменной ширины
