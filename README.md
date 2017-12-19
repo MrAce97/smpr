@@ -161,9 +161,12 @@ for (i in 1:l)
 return (list[which.max(counts)])
 ```
 Kernel=3/4*(1-x^2)
+
 ![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFloat.png)
+
 Kernel=2/pi/(exp(x)+exp(-x))
-![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFloat1.png)
+
+![pwf](https://github.com/MrAce97/smpr/blob/master/images/parsenWindowFloat1.png)
 
 # Наивный байесовский классификатор
 Постановка задачи: Задана обучающая выборка и классифицируемый объект. Требуется найти к какому классу относится объект.
