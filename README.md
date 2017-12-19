@@ -157,7 +157,6 @@ for (i in 1:l)
 ```R
 return (list[which.max(counts)])
 ```
-<<<<<<< HEAD
 Kernel=3/4*(1-x^2)
 ![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFloat.png)
 Kernel=2/pi/(exp(x)+exp(-x))
