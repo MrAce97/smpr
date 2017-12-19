@@ -1,4 +1,37 @@
-﻿
+#Ступников Антон, 402-И
+
+# Метод k ближайших соседей 
+
+Постановка задачи: Задана обучающая выборка и множество классов. Требуется найти к какому классу относится классифицируемый объект. 
+
+ Дано: xl - обучающая выборка, z - классифицируемый объект, параметр k.
+
+Решение:
+Сортируем объекты обучающей выборки xl по возрастанию расстояния от объекта z:
+```R
+orderedXl <- sortObjectsByDist(xl, z)
+```
+Далее берем только первые k элементов orderedXl: 
+```R
+classes <- orderedXl[1:k, n + 1]
+```
+Получаем список классов к которым относятся все объекты, находящиеся в массиве:
+```R
+classes:list <- unique(classes)
+```
+Далее вычисляем количество встречаемости каждого класса из k ближайщих:
+```R
+for (i in 1:k)
+{
+    counts[which(classes[i]==list)] =
+      counts[which(classes[i]==list)] + 1
+}
+```
+Класс с максимальным количеством и является классом заданного классифицируемого объекта:
+```R
+return (list[which.max(counts)]) 
+```
+![knn](https://github.com/MrAce97/smpr/blob/master/images/knn.png)
 
 
 # Метод k взвешенных ближайших соседей 
@@ -78,7 +111,12 @@ for (i in 1:l)
 ```R
 return (list[which.max(counts)])
 ```
+
+Kernel=3/4*(1-x^2)
 ![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFixed.png)
+Kernel=2/pi/(exp(x)+exp(-x))
+![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFixed1.png)
+
 
 # Метод парзеновского окна переменной ширины
 
@@ -119,8 +157,59 @@ for (i in 1:l)
 ```R
 return (list[which.max(counts)])
 ```
+<<<<<<< HEAD
+Kernel=3/4*(1-x^2)
 ![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFloat.png)
+Kernel=2/pi/(exp(x)+exp(-x))
+![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFloat1.png)
 
+# Наивный байесовский классификатор
+Постановка задачи: Задана обучающая выборка и классифицируемый объект. Требуется найти к какому классу относится объект.
+Дано: xl - обучающая выборка, z - классифицируемый объект и параметр k.
+Наивный байесовский классификатор – это алгоритм классификации, основанный на теореме Байеса с допущением о независимости признаков.
+Теорема Байеса:
+![tb](https://github.com/MrAce97/smpr/blob/master/images/bayes.png)
+P(c|x) – апостериорная вероятность данного класса c (т.е. данного значения целевой переменной) при данном значении признака x.
+P(c) – априорная вероятность данного класса.
+P(x|c) – правдоподобие, т.е. вероятность данного значения признака при данном классе.
+P(x) – априорная вероятность данного значения признака.
+Для классифицируемого объекта вычисляются функции правдоподобия каждого из классов, по ним вычисляются апостериорные вероятности классов. Объект относится к тому классу, для которого апостериорная вероятность максимальна.
+Решение:
+```R
+naviveBayes <- function(xl,z){
+  l <- dim(xl)[1]
+  n <- dim(xl)[2] - 1   
+  list <- unique(xl[,n+1])
+  counts = 0
+  h <- c(1,1)
+  apasterior <- c()
+  for(i in 1:length(list)){
+    temp_xl <- xl[xl$Species == list[i], ]
+    apasterior_sum <-0
+    for(j in 1:nrow(temp_xl)){
+      apasterior_tmp<-1
+      for(k in 1:n){
+        apasterior_tmp <- 1/h[k]*kernel((z[k]-temp_xl[j,k])/h[k])*apasterior_tmp
+      }
+      apasterior_sum<-apasterior_sum+apasterior_tmp
+    }
+    apasterior[i]=1/nrow(temp_xl)+apasterior_sum
+  }
+  print(apasterior)
+  counts <-c()
+  for(i in 1:length(list)){
+    counts[i]<-log(apasterior[i])+log(1/3)
+  }
+  
+  return (list[which.max(counts)])
+ 
+}
+=======
+![pwf](https://github.com/MrAce97/smpr/blob/master/images/parcenWindowFloat.png)
+>>>>>>> 5b35d20e16f5da6f0d2cb6e0a13a4c8ad14d9fed
+
+```
+![naiveBayes](https://github.com/MrAce97/smpr/blob/master/images/naiveBayes.png)
 # LOO
 
 Постановка задачи: Оценить способности алгоритмов, обучаемых по выборке.
@@ -144,6 +233,14 @@ for (i in 1:l)
  - Задачу обучения приходится решать N раз
  - Оценка скользящего контроля предполагает, что алгоритм обучения уже задан. Она ничего не говорит о том, какими свойствами должны обладать «хорошие» алгоритмы обучения, и как их строить.
 
+| Алгоритм  |      LOO      |
+|----------|:-------------:|
+| naviveBaise |  0.05333333 |
+| parcenWindowFloat |    0.09333333   |  
+| parcenWindowFixed |    0.05333333   |
+| kwnn |    0.04   |
+| knn |    0.04   |
+    
 
 
   
